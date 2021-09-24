@@ -1,31 +1,54 @@
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "strconv"
+)
 
-func Swap(inputSlice *[10]int, index int){
+func Swap(inputSlice *[]int, index int){
     swap := (*inputSlice)[index]
     (*inputSlice)[index] = (*inputSlice)[index-1]
     (*inputSlice)[index-1] = swap
 }
 
-func BubbleSort(chanForSortedArray chan [10]int, input [10]int){
-    for i := len(input); i > 0; i-- {
+func BubbleSort(input *[]int){
+    for i := len(*input); i > 0; i-- {
         for j := 1; j < i; j++ {
-            if input[j-1] > input[j] {
-                Swap(&input, j)
+            if (*input)[j-1] > (*input)[j] {
+                Swap(input, j)
             }
         }
     }
-    chanForSortedArray <- input
 }
 
 func main() {
-    testArray := [10]int{18, 8, -3, -7, 4, 31, 7, 81, -23, 1}
-    chanForSortedArray := make(chan [10]int)
+    testArray := []int{}
+    var input string
 
-    go BubbleSort(chanForSortedArray, testArray)
+    for i := 0; i < 10; i++ {
+        fmt.Println("Enter a integer number to add it to array or 'X' to exit entering the array elements:")
+        _, err := fmt.Scan(&input)
+        if err != nil {
+            fmt.Println("[ERROR] Incorrect input! Can not scan the input...")
+        } else{
+            if input == "X" {
+                fmt.Println("Exit")
+                break
+            } else {
+                item, err := strconv.Atoi(input)
+                if err != nil {
+                    fmt.Println("[ERROR] Incorrect input! Input is not an integer...")
+                } else {
+                    testArray = append(testArray, item)
+                }
+            }
+        }
+    }
 
-    sortedArray := <-chanForSortedArray
-    fmt.Println("Test array: ", testArray)
-    fmt.Println("Sorted array: ", sortedArray)
+
+    fmt.Println("Input array: ", testArray)
+
+    BubbleSort(&testArray)
+
+    fmt.Println("Sorted array: ", testArray)
 }
