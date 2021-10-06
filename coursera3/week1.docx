@@ -1,0 +1,4 @@
+Moore's law is a term used to refer to the observation made by Gordon Moore in 1965 that the number of transistors in a dense integrated circuit (IC) doubles about every two years.
+The Moore's law(rule) is not working now. The reason why is because the transistors consume power. The density of transistors can go up and up and up on these processors, but these transistors consume a lot of power, and the power now is becoming a critical issue and it is called a power wall. High power leads to high temperature. 
+If something is running, it is consuming a lot of power, it's going to be physically hot. And that is the second reason why this rule is not predicting the raise of the transistor's number.
+Voltage scaling reduces power consumption.
