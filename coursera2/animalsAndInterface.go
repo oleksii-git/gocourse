@@ -104,7 +104,7 @@ func newAnimal(animal_name string, animalType string, animals *[]animal) {
 		})
 		created = true
 	case "bird":
-		*animals = append(*animals, Cow{
+		*animals = append(*animals, Bird{
 			Name:       animal_name,
 			food:       "grass",
 			locomotion: "walk",
@@ -112,7 +112,7 @@ func newAnimal(animal_name string, animalType string, animals *[]animal) {
 		})
 		created = true
 	case "snake":
-		*animals = append(*animals, Cow{
+		*animals = append(*animals, Snake{
 			Name:       animal_name,
 			food:       "grass",
 			locomotion: "walk",
